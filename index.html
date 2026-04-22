@@ -55,8 +55,7 @@ nav.scrolled{border-color:var(--border)}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(124,106,247,0.3)}
 .btn-secondary{border:1px solid var(--border);color:var(--light);padding:12px 28px;border-radius:10px;text-decoration:none;font-weight:600;font-size:0.88rem;transition:all .2s}
 .btn-secondary:hover{border-color:var(--accent);color:var(--accent2)}
-.btn-resume{border:1px solid var(--green);color:var(--green);padding:12px 22px;border-radius:10px;text-decoration:none;font-weight:700;font-size:0.88rem;transition:all .2s;background:rgba(52,211,153,0.06)}
-.btn-resume:hover{background:rgba(52,211,153,0.15);transform:translateY(-2px)}
+
 .hero-right{display:flex;flex-direction:column;gap:16px}
 .hero-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;transition:border-color .2s}
 .hero-card:hover{border-color:var(--accent)}
@@ -228,7 +227,7 @@ footer{border-top:1px solid var(--border);padding:28px 40px;display:flex;justify
       <div class="hero-btns">
         <a href="#projects" class="btn-primary">View My Work</a>
         <a href="#contact" class="btn-secondary">Let's Talk</a>
-        <a href="#" class="btn-resume" onclick="downloadResume(event)">⬇ Resume</a>
+
       </div>
     </div>
     <div class="hero-right">
@@ -634,97 +633,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 
-// Resume download
-function downloadResume(e){
-  e.preventDefault();
-  // Builds a plain-text resume and triggers download
-  const resume=`TANISHA KOSHTA
-tanishakoshta@gmail.com | +91 8817696609 | Jabalpur, Madhya Pradesh
-LinkedIn: linkedin.com/in/tanisha-koshta-aa58342a2 | GitHub: github.com/tanishaaaaaaaaaaaaa
-
-─────────────────────────────────────────
-PROFILE
-─────────────────────────────────────────
-Artificial Intelligence and Data Science undergraduate (pre-final year) with hands-on
-experience building practical machine learning and data systems. Skilled in Python,
-machine learning, natural language processing, and workflow automation. Developed
-projects including a dark web intelligence crawler, an NLP-based YouTube video
-translator, and an Apache Airflow-based machine learning pipeline. Interested in
-applying AI and data-driven techniques to solve real-world problems.
-
-─────────────────────────────────────────
-EDUCATION
-─────────────────────────────────────────
-Gyan Ganga College Of Technology
-B.Tech in Artificial Intelligence and Data Science | 2023 – Present | CGPA: 7.65/10
-
-Guru Gobind Singh Khalsa Hr. Sec. School
-Senior Secondary (Class XII) | 2021–2022 | 63.8%
-
-Guru Gobind Singh Khalsa Hr. Sec. School
-Secondary (Class X) | 2020–2021 | 60%
-
-─────────────────────────────────────────
-PERSONAL PROJECTS
-─────────────────────────────────────────
-The Dark Web Crawler (Team) | Jun 2024 – Nov 2024
-• Integrated SOCKS5 proxies and rotating User-Agents; discovered 200+ unique .onion links/week
-• Automated extraction and classification of 2,000+ dark web URLs into structured JSON
-• Accelerated data collection by 30% using multi-threaded crawling
-• Achieved 99.9% keyword detection accuracy via modular microservice architecture
-• Reduced attack vector by 60% with Tor + Stem integration
-Tech Stack: Python, Tor Network, Stem, Requests, SOCKS5, Multithreading, REST APIs, OSINT
-
-YouTube Speech Translator + Uruguay Export Data Dashboard (Team) | Sep 2025
-• End-to-end AI pipeline: YouTube download → Whisper STT → Google Translate → gTTS → FFmpeg
-• Built interactive Streamlit app for real-time video translation and export data visualization
-• Created export analytics dashboard using Pandas and Plotly; integrated OEC REST API
-Tech Stack: Python, Whisper, FFmpeg, Google Translate API, gTTS, Streamlit, Pandas, Plotly
-
-Automated Machine Learning Pipeline using Apache Airflow (Solo) | Jan–Mar 2026
-• Designed DAG-based workflow orchestration for automated ML training and testing
-• Built SQL metadata logging system to track pipeline execution and prevent redundant tasks
-• Deployed in containerized Docker environment for reproducible workflow execution
-Tech Stack: Python, Apache Airflow, Docker, SQL
-
-─────────────────────────────────────────
-TECHNICAL SKILLS
-─────────────────────────────────────────
-Programming    : Python, SQL, C++
-ML & AI        : Scikit-learn, NLP, Whisper, Transformers, Data Preprocessing
-Data Science   : Pandas, NumPy, Plotly, Matplotlib
-Frameworks     : Django, Flask, Apache Airflow, Docker, Streamlit, FastAPI
-Web & APIs     : REST APIs, Web Crawling, Requests
-Databases      : MySQL, SQLite
-Dev Tools      : Git, GitHub, VS Code, Postman
-
-─────────────────────────────────────────
-CERTIFICATIONS
-─────────────────────────────────────────
-Python For Data Science – NPTEL (Elite) | Mar 2025
-AWS Cloud Foundations – AWS Academy | Nov 2024
-Data Analytics Job Simulation – Deloitte | May 2024
-
-─────────────────────────────────────────
-ACHIEVEMENTS
-─────────────────────────────────────────
-Smart India Hackathon 2024 Finalist – IIT Jammu | All India Team Rank: 2 | Dec 2024
-National Throwball Player | May 2023
-
-─────────────────────────────────────────
-POSITION OF RESPONSIBILITY
-─────────────────────────────────────────
-Technical Head – GeeksForGeeks Club, GGCT | 2025 – Present
-• Managed 40+ member tech club; organized coding workshops and peer training sessions
-• Spearheaded 10+ campus events engaging 500+ students across departments
-`;
-  const blob=new Blob([resume],{type:'text/plain'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url;
-  a.download='Tanisha_Koshta_Resume.txt';
-  a.click();
-  URL.revokeObjectURL(url);
-}</script>
+</script>
 </body>
 </html>
