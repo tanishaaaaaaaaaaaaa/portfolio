@@ -118,7 +118,7 @@ To deploy your own copy:
 | 📧 Email | tanishakoshta@gmail.com |
 | 💼 LinkedIn | [tanisha-koshta-aa58342a2](https://www.linkedin.com/in/tanisha-koshta-aa58342a2) |
 | 🐙 GitHub | [tanishaaaaaaaaaaaaa](https://github.com/tanishaaaaaaaaaaaaa) |
-| 📍 Location | Jabalpur, Madhya Pradesh, India |
+
 
 ---
 
