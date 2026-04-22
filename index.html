@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tanisha Koshta — AI & Data Science</title>
+<style>
+:root {
+  --bg: #07080f;
+  --surface: #0d0f1c;
+  --card: #111326;
+  --border: #1e2140;
+  --accent: #7c6af7;
+  --accent2: #a78bfa;
+  --teal: #22d3ee;
+  --green: #34d399;
+  --text: #e2e8f0;
+  --muted: #64748b;
+  --light: #94a3b8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:99px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(7,8,15,0.85);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+nav.scrolled{border-color:var(--border)}
+.nav-logo{font-size:1.1rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--teal));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.nav-links{display:flex;gap:32px}
+.nav-links a{color:var(--light);text-decoration:none;font-size:0.85rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--accent2)}
+.nav-cta{background:linear-gradient(135deg,var(--accent),#6d28d9);color:white;padding:8px 20px;border-radius:8px;text-decoration:none;font-size:0.82rem;font-weight:700;transition:opacity .2s}
+.nav-cta:hover{opacity:.85}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding:120px 40px 80px;position:relative;overflow:hidden}
+.hero-glow{position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(124,106,247,0.12) 0%,transparent 70%);pointer-events:none}
+.hero-glow2{position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(34,211,238,0.07) 0%,transparent 70%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1100px;margin:0 auto;width:100%}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(124,106,247,0.1);border:1px solid rgba(124,106,247,0.3);border-radius:99px;padding:6px 16px;font-size:0.75rem;color:var(--accent2);font-weight:600;margin-bottom:20px}
+.tag-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero-name{font-size:3.2rem;font-weight:900;line-height:1.1;margin-bottom:8px}
+.hero-name span{background:linear-gradient(135deg,var(--accent),var(--teal));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.hero-title{font-size:1.1rem;color:var(--light);margin-bottom:20px;font-weight:400}
+.hero-title strong{color:var(--accent2);font-weight:600}
+.hero-desc{color:var(--muted);font-size:0.9rem;line-height:1.8;max-width:480px;margin-bottom:32px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#6d28d9);color:white;padding:12px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:0.88rem;transition:transform .2s,box-shadow .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(124,106,247,0.3)}
+.btn-secondary{border:1px solid var(--border);color:var(--light);padding:12px 28px;border-radius:10px;text-decoration:none;font-weight:600;font-size:0.88rem;transition:all .2s}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent2)}
+.btn-resume{border:1px solid var(--green);color:var(--green);padding:12px 22px;border-radius:10px;text-decoration:none;font-weight:700;font-size:0.88rem;transition:all .2s;background:rgba(52,211,153,0.06)}
+.btn-resume:hover{background:rgba(52,211,153,0.15);transform:translateY(-2px)}
+.hero-right{display:flex;flex-direction:column;gap:16px}
+.hero-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;transition:border-color .2s}
+.hero-card:hover{border-color:var(--accent)}
+.hc-label{font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px}
+.hc-val{font-size:1.4rem;font-weight:800;color:var(--accent2)}
+.hc-sub{font-size:0.75rem;color:var(--muted);margin-top:3px}
+.hero-cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.achievement-card{background:linear-gradient(135deg,rgba(124,106,247,0.08),rgba(34,211,238,0.04));border:1px solid rgba(124,106,247,0.2);border-radius:16px;padding:20px}
+.ach-icon{font-size:1.8rem;margin-bottom:8px}
+.ach-title{font-size:0.9rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.ach-sub{font-size:0.75rem;color:var(--muted)}
+
+/* SECTIONS */
+section{padding:90px 40px;max-width:1100px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:56px}
+.section-tag{display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);background:rgba(124,106,247,0.1);padding:4px 14px;border-radius:99px;margin-bottom:12px}
+.section-title{font-size:2rem;font-weight:800;margin-bottom:12px}
+.section-sub{color:var(--muted);font-size:0.9rem;max-width:500px;margin:0 auto;line-height:1.7}
+
+/* ABOUT */
+#about .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.about-text p{color:var(--light);font-size:0.92rem;line-height:1.9;margin-bottom:16px}
+.about-text p strong{color:var(--accent2)}
+.info-list{margin-top:24px;display:flex;flex-direction:column;gap:10px}
+.info-item{display:flex;align-items:center;gap:12px;font-size:0.83rem;color:var(--light)}
+.info-icon{width:32px;height:32px;background:rgba(124,106,247,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0}
+.about-right{display:flex;flex-direction:column;gap:16px}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;border-left:3px solid var(--accent)}
+.edu-school{font-size:0.88rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.edu-degree{font-size:0.78rem;color:var(--accent2)}
+.edu-meta{font-size:0.72rem;color:var(--muted);margin-top:6px}
+.edu-cgpa{display:inline-block;background:rgba(52,211,153,0.1);color:var(--green);font-size:0.7rem;font-weight:700;padding:2px 8px;border-radius:6px;margin-top:4px}
+
+/* SKILLS */
+#skills{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);max-width:100%;padding:90px 40px}
+#skills .inner{max-width:1100px;margin:0 auto}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.skill-cat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px}
+.skill-cat-title{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent2);margin-bottom:14px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:7px}
+.stag{font-size:0.72rem;background:rgba(124,106,247,0.08);border:1px solid rgba(124,106,247,0.15);color:var(--light);border-radius:7px;padding:4px 10px}
+
+/* PROJECTS */
+.projects-grid{display:flex;flex-direction:column;gap:28px}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:32px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;transition:border-color .25s,transform .2s}
+.project-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.proj-num{font-size:0.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.proj-title{font-size:1.15rem;font-weight:800;color:var(--text);margin-bottom:6px}
+.proj-type{font-size:0.72rem;color:var(--muted);margin-bottom:14px}
+.proj-desc{color:var(--light);font-size:0.85rem;line-height:1.8;margin-bottom:16px}
+.proj-highlights{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.highlight{display:flex;align-items:flex-start;gap:8px;font-size:0.8rem;color:var(--light)}
+.highlight::before{content:'→';color:var(--accent);flex-shrink:0;margin-top:1px}
+.proj-stack{display:flex;flex-wrap:wrap;gap:6px}
+.stack-tag{font-size:0.68rem;background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.15);color:var(--teal);border-radius:6px;padding:3px 9px}
+.proj-badge{text-align:center;background:rgba(124,106,247,0.08);border:1px solid rgba(124,106,247,0.2);border-radius:12px;padding:16px;min-width:100px}
+.badge-icon{font-size:2rem;display:block;margin-bottom:6px}
+.badge-label{font-size:0.65rem;color:var(--muted);line-height:1.4}
+
+/* EXPERIENCE */
+.exp-list{display:flex;flex-direction:column;gap:16px}
+.exp-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 24px;display:flex;gap:18px;align-items:flex-start;transition:border-color .2s}
+.exp-card:hover{border-color:var(--accent)}
+.exp-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.exp-body{flex:1}
+.exp-role{font-size:0.92rem;font-weight:700;color:var(--text)}
+.exp-org{font-size:0.78rem;color:var(--accent2);margin-bottom:4px}
+.exp-date{font-size:0.7rem;color:var(--muted);margin-bottom:10px}
+.exp-points{display:flex;flex-direction:column;gap:5px}
+.exp-point{font-size:0.8rem;color:var(--light);display:flex;gap:8px}
+.exp-point::before{content:'•';color:var(--accent);flex-shrink:0}
+
+/* CERTS */
+.certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;display:flex;gap:14px;align-items:flex-start;transition:border-color .2s}
+.cert-card:hover{border-color:var(--green)}
+.cert-icon{font-size:1.6rem;flex-shrink:0}
+.cert-name{font-size:0.85rem;font-weight:700;color:var(--text);margin-bottom:3px}
+.cert-issuer{font-size:0.72rem;color:var(--accent2)}
+.cert-date{font-size:0.68rem;color:var(--muted);margin-top:4px}
+.cert-badge{display:inline-block;font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:6px;margin-top:6px}
+.elite{background:rgba(251,191,36,0.1);color:#fbbf24}
+.verified{background:rgba(52,211,153,0.1);color:var(--green)}
+
+/* CONTACT */
+#contact{background:var(--surface);border-top:1px solid var(--border);max-width:100%;padding:90px 40px}
+#contact .inner{max-width:1100px;margin:0 auto}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.contact-left h2{font-size:2rem;font-weight:800;margin-bottom:16px}
+.contact-left p{color:var(--muted);font-size:0.9rem;line-height:1.8;margin-bottom:28px}
+.contact-links{display:flex;flex-direction:column;gap:12px}
+.contact-link{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;text-decoration:none;color:var(--text);transition:border-color .2s,transform .2s}
+.contact-link:hover{border-color:var(--accent);transform:translateX(4px)}
+.cl-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.cl-label{font-size:0.7rem;color:var(--muted)}
+.cl-val{font-size:0.85rem;font-weight:600;color:var(--text)}
+.contact-right{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:32px}
+.contact-right h3{font-size:1rem;font-weight:700;margin-bottom:20px;color:var(--accent2)}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:0.75rem;color:var(--muted);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em}
+.form-group input,.form-group textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--text);font-size:0.85rem;font-family:inherit;outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--accent)}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-btn{width:100%;background:linear-gradient(135deg,var(--accent),#6d28d9);color:white;border:none;padding:13px;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:opacity .2s;font-family:inherit}
+.form-btn:hover{opacity:.88}
+.form-success{display:none;text-align:center;padding:20px;color:var(--green);font-weight:600;font-size:0.9rem}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:28px 40px;display:flex;justify-content:space-between;align-items:center;max-width:100%}
+.footer-copy{font-size:0.78rem;color:var(--muted)}
+.footer-heart{font-size:0.78rem;color:var(--muted)}
+.footer-heart span{color:#f87171}
+
+/* FLOATING SCROLL TOP */
+#scrollTop{position:fixed;bottom:28px;right:24px;width:42px;height:42px;background:linear-gradient(135deg,var(--accent),#6d28d9);border:none;border-radius:12px;color:white;font-size:1.1rem;cursor:pointer;opacity:0;transform:translateY(10px);transition:all .3s;z-index:99;display:flex;align-items:center;justify-content:center}
+#scrollTop.show{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:14px 20px}
+  .nav-links{display:none}
+  #hero{padding:100px 20px 60px}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-name{font-size:2.2rem}
+  .hero-right{display:none}
+  section{padding:60px 20px;max-width:100%}
+  #skills,#contact{padding:60px 20px}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .project-card{grid-template-columns:1fr}
+  .proj-badge{display:none}
+  footer{flex-direction:column;gap:8px;text-align:center;padding:20px}
+}
+
+/* ANIMATIONS */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">TK.</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="mailto:tanishakoshta@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="hero-tag">
+        <span class="tag-dot"></span>
+        Open to Internships & Full-time Roles
+      </div>
+      <h1 class="hero-name">Hi, I'm<br><span>Tanisha Koshta</span></h1>
+      <p class="hero-title">AI & Data Science Engineer · <strong>NLP · MLOps · Data Engineering</strong></p>
+      <p class="hero-desc">
+        Pre-final year B.Tech student building real-world AI systems — from dark web intelligence crawlers to automated ML pipelines and multilingual video translators. I turn data into decisions.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-secondary">Let's Talk</a>
+        <a href="#" class="btn-resume" onclick="downloadResume(event)">⬇ Resume</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="achievement-card">
+        <div class="ach-icon">🏆</div>
+        <div class="ach-title">Smart India Hackathon 2024 Finalist</div>
+        <div class="ach-sub">All India Team Rank #2 · Hosted at IIT Jammu</div>
+      </div>
+      <div class="hero-cards-grid">
+        <div class="hero-card">
+          <div class="hc-label">Projects Built</div>
+          <div class="hc-val">3+</div>
+          <div class="hc-sub">End-to-end AI systems</div>
+        </div>
+        <div class="hero-card">
+          <div class="hc-label">CGPA</div>
+          <div class="hc-val">7.65</div>
+          <div class="hc-sub">B.Tech AI & DS</div>
+        </div>
+        <div class="hero-card">
+          <div class="hc-label">Club Leadership</div>
+          <div class="hc-val">40+</div>
+          <div class="hc-sub">Members managed</div>
+        </div>
+        <div class="hero-card">
+          <div class="hc-label">Sport</div>
+          <div class="hc-val">🏐</div>
+          <div class="hc-sub">National Throwball Player</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header fade-in">
+    <div class="section-tag">About Me</div>
+    <h2 class="section-title">The person behind the code</h2>
+    <p class="section-sub">A curious builder who believes AI should solve real problems, not just impress on paper.</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <p>
+        I'm a pre-final year <strong>B.Tech student in AI & Data Science</strong> from Gyan Ganga College of Technology, Jabalpur. I've always been drawn to the intersection of intelligent systems and real-world impact — which is why every project I've built solves an actual problem.
+      </p>
+      <p>
+        From crawling the <strong>dark web for threat intelligence</strong> to building a fully automated <strong>multilingual video translator</strong>, I thrive when the challenge is complex and the stakes are real. I recently built a production-grade <strong>ML pipeline using Apache Airflow and Docker</strong> — completely solo.
+      </p>
+      <p>
+        Outside of code, I'm the <strong>Technical Head of GeeksForGeeks Club</strong> at my college, where I organize coding contests and workshops for 500+ students. I'm also a National-level Throwball player — I believe the discipline of sport translates directly to engineering.
+      </p>
+      <div class="info-list">
+        <div class="info-item"><div class="info-icon">📍</div>Jabalpur, Madhya Pradesh, India</div>
+        <div class="info-item"><div class="info-icon">📧</div>tanishakoshta@gmail.com</div>
+
+        <div class="info-item"><div class="info-icon">🎓</div>B.Tech AI & DS · 2023 – Present</div>
+      </div>
+    </div>
+    <div class="about-right fade-in">
+      <div class="edu-card">
+        <div class="edu-school">Gyan Ganga College of Technology</div>
+        <div class="edu-degree">B.Tech — Artificial Intelligence & Data Science</div>
+        <div class="edu-meta">2023 – Present · Jabalpur, MP</div>
+        <div class="edu-cgpa">CGPA: 7.65 / 10</div>
+      </div>
+      <div class="edu-card" style="border-left-color:var(--teal)">
+        <div class="edu-school">Guru Gobind Singh Khalsa Hr. Sec. School</div>
+        <div class="edu-degree">Senior Secondary (Class XII)</div>
+        <div class="edu-meta">2021 – 2022</div>
+        <div class="edu-cgpa" style="background:rgba(34,211,238,0.1);color:var(--teal)">63.8%</div>
+      </div>
+      <div class="edu-card" style="border-left-color:var(--green)">
+        <div class="edu-school">Guru Gobind Singh Khalsa Hr. Sec. School</div>
+        <div class="edu-degree">Secondary (Class X)</div>
+        <div class="edu-meta">2020 – 2021</div>
+        <div class="edu-cgpa" style="background:rgba(52,211,153,0.1);color:var(--green)">60%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="max-width:100%">
+  <div class="inner">
+    <div class="section-header fade-in">
+      <div class="section-tag">Technical Skills</div>
+      <h2 class="section-title">What I work with</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-cat fade-in">
+        <div class="skill-cat-title">💻 Programming</div>
+        <div class="skill-tags">
+          <span class="stag">Python</span><span class="stag">SQL</span><span class="stag">C++</span>
+        </div>
+      </div>
+      <div class="skill-cat fade-in">
+        <div class="skill-cat-title">🤖 ML & AI</div>
+        <div class="skill-tags">
+          <span class="stag">Scikit-learn</span><span class="stag">NLP</span><span class="stag">Whisper</span><span class="stag">Transformers</span><span class="stag">Data Preprocessing</span>
+        </div>
+      </div>
+      <div class="skill-cat fade-in">
+        <div class="skill-cat-title">📊 Data Science</div>
+        <div class="skill-tags">
+          <span class="stag">Pandas</span><span class="stag">NumPy</span><span class="stag">Plotly</span><span class="stag">Matplotlib</span><span class="stag">Streamlit</span>
+        </div>
+      </div>
+      <div class="skill-cat fade-in">
+        <div class="skill-cat-title">⚙️ MLOps & Tools</div>
+        <div class="skill-tags">
+          <span class="stag">Apache Airflow</span><span class="stag">Docker</span><span class="stag">FastAPI</span><span class="stag">Flask</span><span class="stag">Django</span>
+        </div>
+      </div>
+      <div class="skill-cat fade-in">
+        <div class="skill-cat-title">🌐 Web & APIs</div>
+        <div class="skill-tags">
+          <span class="stag">REST APIs</span><span class="stag">Web Crawling</span><span class="stag">Requests</span><span class="stag">OSINT</span>
+        </div>
+      </div>
+      <div class="skill-cat fade-in">
+        <div class="skill-cat-title">🗄️ Databases & Dev</div>
+        <div class="skill-tags">
+          <span class="stag">MySQL</span><span class="stag">SQLite</span><span class="stag">Git</span><span class="stag">GitHub</span><span class="stag">VS Code</span><span class="stag">Postman</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header fade-in">
+    <div class="section-tag">Projects</div>
+    <h2 class="section-title">Things I've built</h2>
+    <p class="section-sub">Each project was a real engineering challenge — not a tutorial. Built to work, not just to look good.</p>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card fade-in">
+      <div>
+        <div class="proj-num">Project 01 · Team · Jun–Nov 2024</div>
+        <div class="proj-title">The Dark Web Intelligence Crawler</div>
+        <div class="proj-type">Cybersecurity · OSINT · Web Crawling · Multi-threading</div>
+        <div class="proj-desc">
+          A stealth-mode dark web crawler built with Tor integration, SOCKS5 proxies, and rotating user agents. Designed for automated threat intelligence extraction from .onion sites — with accuracy, anonymity, and speed as the core engineering goals.
+        </div>
+        <div class="proj-highlights">
+          <div class="highlight">Discovered 200+ unique .onion links per week with enhanced anonymity</div>
+          <div class="highlight">Automated extraction and classification of 2,000+ dark web URLs into structured JSON</div>
+          <div class="highlight">Accelerated data collection by 30% using multi-threaded crawling</div>
+          <div class="highlight">Reduced attack vector by 60% with Tor + Stem integration</div>
+          <div class="highlight">Keyword detection accuracy of 99.9% using modular microservice architecture</div>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-tag">Python</span><span class="stack-tag">Tor Network</span><span class="stack-tag">Stem</span><span class="stack-tag">SOCKS5</span><span class="stack-tag">Multithreading</span><span class="stack-tag">REST APIs</span><span class="stack-tag">OSINT</span>
+        </div>
+      </div>
+      <div class="proj-badge">
+        <span class="badge-icon">🕷️</span>
+        <div class="badge-label">Threat<br>Intelligence</div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div>
+        <div class="proj-num">Project 02 · Team · Sep 2025</div>
+        <div class="proj-title">YouTube Speech Translator + Export Analytics Dashboard</div>
+        <div class="proj-type">NLP · Multilingual AI · Data Visualization · Streamlit</div>
+        <div class="proj-desc">
+          An end-to-end AI pipeline that downloads YouTube videos, transcribes speech using Whisper, translates text, and re-generates speech-synchronized translated videos. Paired with an interactive export data dashboard for Uruguay's trade analytics.
+        </div>
+        <div class="proj-highlights">
+          <div class="highlight">Full pipeline: YouTube download → Whisper STT → Google Translate → gTTS → FFmpeg sync</div>
+          <div class="highlight">Built interactive Streamlit app for real-time translation and data visualization</div>
+          <div class="highlight">Export analytics dashboard with trade trends, partners, and product complexity</div>
+          <div class="highlight">Integrated OEC REST API for live economic data processing</div>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-tag">Whisper</span><span class="stack-tag">FFmpeg</span><span class="stack-tag">Google Translate API</span><span class="stack-tag">gTTS</span><span class="stack-tag">Streamlit</span><span class="stack-tag">Pandas</span><span class="stack-tag">Plotly</span>
+        </div>
+      </div>
+      <div class="proj-badge">
+        <span class="badge-icon">🎙️</span>
+        <div class="badge-label">NLP<br>Pipeline</div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div>
+        <div class="proj-num">Project 03 · Solo · Jan–Mar 2026</div>
+        <div class="proj-title">Automated ML Pipeline using Apache Airflow</div>
+        <div class="proj-type">MLOps · Workflow Orchestration · Docker · SQL</div>
+        <div class="proj-desc">
+          A production-grade, DAG-based ML training and testing pipeline built solo. Handles task dependency management, modular execution, metadata logging, and Docker containerization — the kind of system real ML teams use in industry.
+        </div>
+        <div class="proj-highlights">
+          <div class="highlight">Designed DAG-based workflow orchestration for automated ML training & testing</div>
+          <div class="highlight">Built metadata logging with SQL to track execution and prevent redundant tasks</div>
+          <div class="highlight">Deployed in containerized Docker environment for reproducible workflows</div>
+          <div class="highlight">Modular custom operators + repository-based architecture for scalability</div>
+        </div>
+        <div class="proj-stack">
+          <span class="stack-tag">Apache Airflow</span><span class="stack-tag">Docker</span><span class="stack-tag">Python</span><span class="stack-tag">SQL</span>
+        </div>
+      </div>
+      <div class="proj-badge">
+        <span class="badge-icon">⚙️</span>
+        <div class="badge-label">MLOps<br>Pipeline</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);max-width:100%;padding:90px 40px">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-header fade-in">
+      <div class="section-tag">Experience & Achievements</div>
+      <h2 class="section-title">Leadership & Recognition</h2>
+    </div>
+    <div class="exp-list">
+
+      <div class="exp-card fade-in">
+        <div class="exp-icon" style="background:rgba(124,106,247,0.12)">🏆</div>
+        <div class="exp-body">
+          <div class="exp-role">Smart India Hackathon 2024 — Finalist</div>
+          <div class="exp-org">All India Team Rank #2 · Hosted at IIT Jammu</div>
+          <div class="exp-date">December 2024</div>
+          <div class="exp-points">
+            <div class="exp-point">Competed against thousands of teams nationally, finishing 2nd in the country at one of India's most prestigious engineering competitions.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card fade-in">
+        <div class="exp-icon" style="background:rgba(34,211,238,0.1)">💻</div>
+        <div class="exp-body">
+          <div class="exp-role">Technical Head</div>
+          <div class="exp-org">GeeksForGeeks Club · Gyan Ganga College of Technology</div>
+          <div class="exp-date">2025 – Present</div>
+          <div class="exp-points">
+            <div class="exp-point">Managed a 40+ member active tech club with weekly peer training sessions in Python, C++, and AI basics.</div>
+            <div class="exp-point">Planned and executed 10+ campus-wide technical events, coding contests, and guest lectures engaging 500+ students.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card fade-in">
+        <div class="exp-icon" style="background:rgba(52,211,153,0.1)">🏐</div>
+        <div class="exp-body">
+          <div class="exp-role">National Throwball Player</div>
+          <div class="exp-org">National Level Sports Achievement</div>
+          <div class="exp-date">May 2023</div>
+          <div class="exp-points">
+            <div class="exp-point">Represented at national level — demonstrating the discipline, teamwork, and competitive mindset I bring to engineering too.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CERTS -->
+    <div style="margin-top:48px">
+      <div class="section-header fade-in" style="margin-bottom:28px">
+        <div class="section-tag">Certifications</div>
+        <h2 class="section-title" style="font-size:1.5rem">Credentials</h2>
+      </div>
+      <div class="certs-grid">
+        <div class="cert-card fade-in">
+          <div class="cert-icon">🐍</div>
+          <div>
+            <div class="cert-name">Python For Data Science</div>
+            <div class="cert-issuer">NPTEL</div>
+            <div class="cert-date">March 2025</div>
+            <span class="cert-badge elite">Elite</span>
+          </div>
+        </div>
+        <div class="cert-card fade-in">
+          <div class="cert-icon">☁️</div>
+          <div>
+            <div class="cert-name">AWS Cloud Foundations</div>
+            <div class="cert-issuer">AWS Academy</div>
+            <div class="cert-date">November 2024</div>
+            <span class="cert-badge verified">Verified</span>
+          </div>
+        </div>
+        <div class="cert-card fade-in">
+          <div class="cert-icon">📊</div>
+          <div>
+            <div class="cert-name">Data Analytics Job Simulation</div>
+            <div class="cert-issuer">Deloitte</div>
+            <div class="cert-date">May 2024</div>
+            <span class="cert-badge verified">Verified</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="max-width:100%">
+  <div class="inner">
+    <div class="section-header fade-in">
+      <div class="section-tag">Contact</div>
+      <h2 class="section-title">Let's build something together</h2>
+      <p class="section-sub">Open to internships, collaborations, and entry-level roles in AI, ML, and Data Science.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-left fade-in">
+        <h2>Drop me a message 👋</h2>
+        <p>Whether you have an internship opportunity, a project idea, or just want to connect — I'd love to hear from you. I typically respond within 24 hours.</p>
+        <div class="contact-links">
+          <a href="mailto:tanishakoshta@gmail.com" class="contact-link">
+            <div class="cl-icon" style="background:rgba(239,68,68,0.1)">📧</div>
+            <div><div class="cl-label">Email</div><div class="cl-val">tanishakoshta@gmail.com</div></div>
+          </a>
+
+          <a href="https://www.linkedin.com/in/tanisha-koshta-aa58342a2" target="_blank" class="contact-link">
+            <div class="cl-icon" style="background:rgba(59,130,246,0.1)">🔗</div>
+            <div><div class="cl-label">LinkedIn</div><div class="cl-val">tanisha-koshta</div></div>
+          </a>
+          <a href="https://github.com/tanishaaaaaaaaaaaaa" target="_blank" class="contact-link">
+            <div class="cl-icon" style="background:rgba(124,106,247,0.1)">🐙</div>
+            <div><div class="cl-label">GitHub</div><div class="cl-val">tanishaaaaaaaaaaaaa</div></div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-right fade-in">
+        <h3>Send a quick message</h3>
+        <div id="contact-form">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="fname" placeholder="e.g. Priya Sharma">
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="femail" placeholder="you@company.com">
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <input type="text" id="fsubject" placeholder="Internship Opportunity / Collaboration">
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea id="fmessage" placeholder="Hi Tanisha, I'd love to discuss..."></textarea>
+          </div>
+          <button class="form-btn" onclick="sendMessage()">Send Message →</button>
+        </div>
+        <div class="form-success" id="form-success">
+          ✅ Thanks! Your message has been composed.<br>
+          <span style="font-size:0.8rem;color:var(--muted)">Opening your email client now...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2026 Tanisha Koshta · Jabalpur, India</div>
+  <div class="footer-heart">Built with <span>♥</span> and a lot of Python</div>
+</footer>
+
+<!-- SCROLL TOP -->
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// NAV scroll effect
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);
+  document.getElementById('scrollTop').classList.toggle('show',window.scrollY>400);
+});
+
+// Fade-in on scroll
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+// Contact form → mailto
+function sendMessage(){
+  const n=document.getElementById('fname').value.trim();
+  const e=document.getElementById('femail').value.trim();
+  const s=document.getElementById('fsubject').value.trim();
+  const m=document.getElementById('fmessage').value.trim();
+  if(!n||!e||!m){alert('Please fill in your name, email, and message.');return;}
+  const sub=encodeURIComponent(s||'Message from '+n);
+  const body=encodeURIComponent(`Hi Tanisha,\n\n${m}\n\nBest,\n${n}\n${e}`);
+  window.location.href=`mailto:tanishakoshta@gmail.com?subject=${sub}&body=${body}`;
+  document.getElementById('contact-form').style.display='none';
+  document.getElementById('form-success').style.display='block';
+}
+
+// Smooth anchor nav
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+
+// Resume download
+function downloadResume(e){
+  e.preventDefault();
+  // Builds a plain-text resume and triggers download
+  const resume=`TANISHA KOSHTA
+tanishakoshta@gmail.com | +91 8817696609 | Jabalpur, Madhya Pradesh
+LinkedIn: linkedin.com/in/tanisha-koshta-aa58342a2 | GitHub: github.com/tanishaaaaaaaaaaaaa
+
+─────────────────────────────────────────
+PROFILE
+─────────────────────────────────────────
+Artificial Intelligence and Data Science undergraduate (pre-final year) with hands-on
+experience building practical machine learning and data systems. Skilled in Python,
+machine learning, natural language processing, and workflow automation. Developed
+projects including a dark web intelligence crawler, an NLP-based YouTube video
+translator, and an Apache Airflow-based machine learning pipeline. Interested in
+applying AI and data-driven techniques to solve real-world problems.
+
+─────────────────────────────────────────
+EDUCATION
+─────────────────────────────────────────
+Gyan Ganga College Of Technology
+B.Tech in Artificial Intelligence and Data Science | 2023 – Present | CGPA: 7.65/10
+
+Guru Gobind Singh Khalsa Hr. Sec. School
+Senior Secondary (Class XII) | 2021–2022 | 63.8%
+
+Guru Gobind Singh Khalsa Hr. Sec. School
+Secondary (Class X) | 2020–2021 | 60%
+
+─────────────────────────────────────────
+PERSONAL PROJECTS
+─────────────────────────────────────────
+The Dark Web Crawler (Team) | Jun 2024 – Nov 2024
+• Integrated SOCKS5 proxies and rotating User-Agents; discovered 200+ unique .onion links/week
+• Automated extraction and classification of 2,000+ dark web URLs into structured JSON
+• Accelerated data collection by 30% using multi-threaded crawling
+• Achieved 99.9% keyword detection accuracy via modular microservice architecture
+• Reduced attack vector by 60% with Tor + Stem integration
+Tech Stack: Python, Tor Network, Stem, Requests, SOCKS5, Multithreading, REST APIs, OSINT
+
+YouTube Speech Translator + Uruguay Export Data Dashboard (Team) | Sep 2025
+• End-to-end AI pipeline: YouTube download → Whisper STT → Google Translate → gTTS → FFmpeg
+• Built interactive Streamlit app for real-time video translation and export data visualization
+• Created export analytics dashboard using Pandas and Plotly; integrated OEC REST API
+Tech Stack: Python, Whisper, FFmpeg, Google Translate API, gTTS, Streamlit, Pandas, Plotly
+
+Automated Machine Learning Pipeline using Apache Airflow (Solo) | Jan–Mar 2026
+• Designed DAG-based workflow orchestration for automated ML training and testing
+• Built SQL metadata logging system to track pipeline execution and prevent redundant tasks
+• Deployed in containerized Docker environment for reproducible workflow execution
+Tech Stack: Python, Apache Airflow, Docker, SQL
+
+─────────────────────────────────────────
+TECHNICAL SKILLS
+─────────────────────────────────────────
+Programming    : Python, SQL, C++
+ML & AI        : Scikit-learn, NLP, Whisper, Transformers, Data Preprocessing
+Data Science   : Pandas, NumPy, Plotly, Matplotlib
+Frameworks     : Django, Flask, Apache Airflow, Docker, Streamlit, FastAPI
+Web & APIs     : REST APIs, Web Crawling, Requests
+Databases      : MySQL, SQLite
+Dev Tools      : Git, GitHub, VS Code, Postman
+
+─────────────────────────────────────────
+CERTIFICATIONS
+─────────────────────────────────────────
+Python For Data Science – NPTEL (Elite) | Mar 2025
+AWS Cloud Foundations – AWS Academy | Nov 2024
+Data Analytics Job Simulation – Deloitte | May 2024
+
+─────────────────────────────────────────
+ACHIEVEMENTS
+─────────────────────────────────────────
+Smart India Hackathon 2024 Finalist – IIT Jammu | All India Team Rank: 2 | Dec 2024
+National Throwball Player | May 2023
+
+─────────────────────────────────────────
+POSITION OF RESPONSIBILITY
+─────────────────────────────────────────
+Technical Head – GeeksForGeeks Club, GGCT | 2025 – Present
+• Managed 40+ member tech club; organized coding workshops and peer training sessions
+• Spearheaded 10+ campus events engaging 500+ students across departments
+`;
+  const blob=new Blob([resume],{type:'text/plain'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download='Tanisha_Koshta_Resume.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+}</script>
+</body>
+</html>
