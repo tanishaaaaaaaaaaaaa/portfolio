@@ -1,9 +1,8 @@
-# portfolio
 # 🌐 Tanisha Koshta — Personal Portfolio Website
 
 > A clean, responsive, and professional portfolio website built with vanilla HTML, CSS, and JavaScript. Deployed on Vercel.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-7c6af7?style=for-the-badge&logo=vercel)](https://your-portfolio.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-7c6af7?style=for-the-badge&logo=vercel)](https://portfolio-coral-two-54.vercel.app/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/tanisha-koshta-aa58342a2)
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github)](https://github.com/tanishaaaaaaaaaaaaa)
 
@@ -119,7 +118,7 @@ To deploy your own copy:
 | 📧 Email | tanishakoshta@gmail.com |
 | 💼 LinkedIn | [tanisha-koshta-aa58342a2](https://www.linkedin.com/in/tanisha-koshta-aa58342a2) |
 | 🐙 GitHub | [tanishaaaaaaaaaaaaa](https://github.com/tanishaaaaaaaaaaaaa) |
-
+| 📍 Location | Jabalpur, Madhya Pradesh, India |
 
 ---
 
